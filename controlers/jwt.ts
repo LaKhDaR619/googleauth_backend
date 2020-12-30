@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { refreshTokens } from "../routes/auth";
+import { refreshTokens } from "../routes/auth/auth";
 
 export const generateAccessToken = (data: { username: string }): string => {
   try {

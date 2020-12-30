@@ -1,0 +1,12 @@
+{
+  "web": {
+    "client_id": "332399375182-vh2q974e8eafhcgg76qmqn0sisus33a4.apps.googleusercontent.com",
+    "project_id": "crested-timer-198823",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "VTuKsdGKWDdannBBfLKPMiJl",
+    "redirect_uris": ["http://localhost:3000/google/callback"],
+    "javascript_origins": ["http://localhost:5000"]
+  }
+}

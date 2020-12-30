@@ -5,10 +5,12 @@ import {
   authenticateToken,
   generateAccessToken,
   generateRefreshToken,
-} from "../controlers/jwt";
+} from "../../controlers/jwt";
+
+import google from "./google";
 
 // our DB
-const users = [
+export const users = [
   { username: "lakhdar", password: "1234" },
   { username: "younes", password: "4321" },
 ];
@@ -17,9 +19,11 @@ const users = [
 
 export const refreshTokens: string[] = [];
 
-const app = express.Router();
+const router = express.Router();
 
-app.post("/login", async (req, res) => {
+router.use("/google", google);
+
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   // authenticating user
@@ -54,7 +58,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
   // checking if username and pass provided
@@ -72,9 +76,10 @@ app.post("/register", async (req, res) => {
 });
 
 // logout
+router.delete("/logout", (req, res) => {});
 
 // refresh the token
-app.post("/token", (req, res) => {
+router.post("/token", (req, res) => {
   const refreshToken = req.body.token;
   const secret = process.env.REFRESH_TOKEN_SECRET;
 
@@ -102,8 +107,8 @@ app.post("/token", (req, res) => {
 });
 
 // checking if the user is logged in
-app.get("/check", authenticateToken, async (req, res) => {
+router.get("/check", authenticateToken, async (req, res) => {
   res.status(200).json({ message: "You are logged In" });
 });
 
-export default app;
+export default router;
